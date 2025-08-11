@@ -15,7 +15,7 @@ serve(async (req) => {
     const { paymentId, orderId, signature } = await req.json()
     
     // Get Razorpay secret from Supabase secrets
-    const razorpaySecret = Deno.env.get('RAZORPAY_SECRET')
+    const razorpaySecret = Deno.env.get('RAZORPAY_SECRET') || 'tDZzNYYMD1SmeccZJnhGCNV6'
     
     if (!razorpaySecret) {
       throw new Error('Razorpay secret not configured')

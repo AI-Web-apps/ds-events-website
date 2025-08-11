@@ -113,6 +113,23 @@ All colors MUST be HSL.
     border: 1px solid hsl(var(--border) / 0.5);
   }
 
+  /* Mobile-optimized neumorphic styles */
+  @media (max-width: 768px) {
+    .neumorphic {
+      box-shadow: 
+        4px 4px 8px hsl(var(--shadow-dark)),
+        -4px -4px 8px hsl(var(--shadow-light)),
+        inset 1px 1px 2px hsl(var(--shadow-light) / 0.3);
+    }
+    
+    .neumorphic-elevated {
+      box-shadow: 
+        6px 6px 12px hsl(var(--shadow-dark)),
+        -6px -6px 12px hsl(var(--shadow-light)),
+        inset 2px 2px 4px hsl(var(--shadow-light) / 0.4);
+    }
+  }
+
   .neumorphic-elevated {
     background: hsl(var(--card-elevated));
     box-shadow: 

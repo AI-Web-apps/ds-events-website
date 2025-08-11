@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/enhanced-button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { ClaimKitDialog } from "@/components/ui/claim-kit-dialog";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="font-heading font-black text-2xl">
+          <div className="font-heading font-black text-xl sm:text-2xl">
             <span className="gradient-text">Drone</span>
             <span className="text-foreground"> Soccers</span>
           </div>
@@ -30,7 +31,9 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button variant="hero" size="default">Claim Your Kit</Button>
+            <ClaimKitDialog>
+              <Button variant="hero" size="default">Claim Your Kit</Button>
+            </ClaimKitDialog>
           </div>
 
           {/* Mobile Menu Button */}
@@ -54,9 +57,11 @@ export function Header() {
               <a href="#contact" className="text-foreground hover:text-primary transition-colors font-medium">
                 Contact
               </a>
-              <Button variant="hero" size="default" className="mt-4">
-                Rent Now
-              </Button>
+              <ClaimKitDialog>
+                <Button variant="hero" size="default" className="mt-4">
+                  Claim Your Kit
+                </Button>
+              </ClaimKitDialog>
             </nav>
           </div>}
       </div>

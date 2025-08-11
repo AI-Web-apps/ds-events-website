@@ -38,33 +38,40 @@ export const initializeRazorpayPayment = ({
       image: '/favicon.ico',
       handler: async function (response: any) {
         try {
-          // Verify payment with our secure backend
-          const verificationResponse = await fetch('/api/verify-payment', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
+          // Import supabase client dynamically to avoid circular deps
+          const { supabase } = await import('@/integrations/supabase/client');
+          
+          // Verify payment with Supabase edge function
+          const { data: verificationResult, error } = await supabase.functions.invoke('verify-payment', {
+            body: {
               paymentId: response.razorpay_payment_id,
               orderId: response.razorpay_order_id,
               signature: response.razorpay_signature
-            })
+            }
           });
 
-          const result = await verificationResponse.json();
+          if (error) {
+            console.error('Verification error:', error);
+            reject(new Error('Payment verification failed'));
+            return;
+          }
           
-          if (result.success) {
+          if (verificationResult?.success) {
             resolve({
               success: true,
               paymentId: response.razorpay_payment_id,
               orderId: response.razorpay_order_id,
               signature: response.razorpay_signature,
-              verified: true
+              verified: true,
+              customerName: prefill.name || '',
+              customerEmail: prefill.email || '',
+              amount: amount
             });
           } else {
             reject(new Error('Payment verification failed'));
           }
         } catch (error) {
+          console.error('Payment verification error:', error);
           reject(new Error('Payment verification error'));
         }
       },

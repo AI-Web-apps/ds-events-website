@@ -1,22 +1,7 @@
 import { Button } from "@/components/ui/enhanced-button";
 import { ArrowRight, Phone, Mail } from "lucide-react";
-import { usePayment } from "@/hooks/usePayment";
+import { ClaimKitDialog } from "@/components/ui/claim-kit-dialog";
 export function CTASection() {
-  const {
-    processPayment,
-    isProcessing
-  } = usePayment();
-  const handlePayment = async () => {
-    try {
-      await processPayment({
-        amount: 3999,
-        name: 'Complete Drone Soccer Kit',
-        description: 'Complete Drone Soccer Kit - Technoxian Event (30th Aug to 02nd Sep, 2025)'
-      });
-    } catch (error) {
-      // Error handling is done in the hook
-    }
-  };
   const scrollToPricing = () => {
     document.getElementById('pricing')?.scrollIntoView({
       behavior: 'smooth'
@@ -35,18 +20,22 @@ export function CTASection() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button variant="hero" size="lg" className="group font-light" onClick={handlePayment} disabled={isProcessing}>
-              {isProcessing ? 'Processing...' : 'Claim Your Kit'}
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            
+            <ClaimKitDialog>
+              <Button variant="hero" size="lg" className="group font-light">
+                Claim Your Kit
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </ClaimKitDialog>
           </div>
 
           <div className="flex justify-center">
-            <div className="flex items-center justify-center gap-3 text-muted-foreground">
+            <a 
+              href="mailto:contact@dronesoccers.com" 
+              className="flex items-center justify-center gap-3 text-muted-foreground hover:text-primary transition-colors"
+            >
               <Mail className="w-5 h-5 text-primary" />
               <span>contact@dronesoccers.com</span>
-            </div>
+            </a>
           </div>
         </div>
 

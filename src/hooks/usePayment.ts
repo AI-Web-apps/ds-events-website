@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { initializeRazorpayPayment, PaymentOptions } from '@/utils/razorpay';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 export const usePayment = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -14,10 +15,10 @@ export const usePayment = () => {
       
       toast({
         title: "Payment Successful! 🎉",
-        description: "Your Drone Soccer Kit has been booked. You'll receive confirmation details shortly.",
+        description: "Your Drone Soccer Kit has been booked. Meet us at Technoxian for the event!",
       });
       
-      // Here you would typically send the payment details to your backend
+      // Log payment details
       console.log('Payment successful:', result);
       
       return result;
