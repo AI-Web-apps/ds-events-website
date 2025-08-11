@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimalist Neumorphic Design System - Pure Black Theme
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Pure Black Base */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+
+    /* Card & Surface Colors with Subtle Neumorphic Effect */
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 90%;
+    --card-elevated: 0 0% 6%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 90%;
+
+    /* Subtle Orange Accent System */
+    --primary: 18 70% 45%;        /* Toned down orange */
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 18 60% 50%;
+    --primary-soft: 18 50% 40%;
+
+    /* Minimalist Secondary System */
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 85%;
+
+    /* Muted & Accent Colors */
+    --muted: 0 0% 6%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 85%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 95%;
+
+    /* Subtle Borders & Inputs */
+    --border: 0 0% 12%;
+    --input: 0 0% 3%;
+    --ring: 18 50% 40%;
+
+    /* Refined Neumorphic Shadows */
+    --shadow-light: 0 0% 8%;
+    --shadow-dark: 0 0% 1%;
+    --glow-primary: 18 50% 40%;
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Subtle Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(18 70% 45%) 0%, hsl(18 50% 40%) 100%);
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 3%) 0%, hsl(0 0% 0%) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 50%, hsl(18 30% 20% / 0.05) 0%, transparent 70%);
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Light mode override (rarely used for this dark-first design) */
+  .light {
+    --background: 210 40% 98%;
+    --foreground: 220 13% 8%;
+    --card: 0 0% 100%;
+    --primary: 18 100% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body overflow-x-hidden;
+    background: hsl(var(--background));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  /* Enhanced Neumorphic Effects */
+  .neumorphic {
+    background: hsl(var(--card));
+    box-shadow: 
+      8px 8px 16px hsl(var(--shadow-dark)),
+      -8px -8px 16px hsl(var(--shadow-light)),
+      inset 1px 1px 2px hsl(var(--shadow-light) / 0.3);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .neumorphic-elevated {
+    background: hsl(var(--card-elevated));
+    box-shadow: 
+      12px 12px 24px hsl(var(--shadow-dark)),
+      -12px -12px 24px hsl(var(--shadow-light)),
+      inset 2px 2px 4px hsl(var(--shadow-light) / 0.4);
+    border: 1px solid hsl(var(--border) / 0.6);
+  }
+
+  .neumorphic-inset {
+    background: hsl(var(--background));
+    box-shadow: 
+      inset 8px 8px 16px hsl(var(--shadow-dark)),
+      inset -8px -8px 16px hsl(var(--shadow-light)),
+      1px 1px 2px hsl(var(--shadow-light) / 0.2);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  .neumorphic-pressed {
+    background: hsl(var(--card));
+    box-shadow: 
+      inset 6px 6px 12px hsl(var(--shadow-dark)),
+      inset -6px -6px 12px hsl(var(--shadow-light)),
+      1px 1px 2px hsl(var(--shadow-light) / 0.1);
+    border: 1px solid hsl(var(--border) / 0.4);
+    transform: scale(0.98);
+  }
+
+  /* Subtle Glow Effects */
+  .glow-primary {
+    box-shadow: 
+      0 0 15px hsl(var(--glow-primary) / 0.2),
+      0 0 30px hsl(var(--glow-primary) / 0.08);
+  }
+
+  .glow-primary-strong {
+    box-shadow: 
+      0 0 20px hsl(var(--glow-primary) / 0.4),
+      0 0 40px hsl(var(--glow-primary) / 0.2),
+      0 0 60px hsl(var(--glow-primary) / 0.1);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Animations */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  .slide-up {
+    animation: slide-up 0.6s ease-out;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0% { 
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3);
+  }
+  100% { 
+    box-shadow: 0 0 40px hsl(var(--glow-primary) / 0.6);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
