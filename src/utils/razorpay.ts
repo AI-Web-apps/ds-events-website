@@ -46,7 +46,9 @@ export const initializeRazorpayPayment = ({
             body: {
               paymentId: response.razorpay_payment_id,
               orderId: response.razorpay_order_id,
-              signature: response.razorpay_signature
+              signature: response.razorpay_signature,
+              customerData: prefill,
+              amount: amount
             }
           });
 

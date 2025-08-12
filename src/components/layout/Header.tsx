@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/enhanced-button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { ClaimKitDialog } from "@/components/ui/claim-kit-dialog";
+import AuthButton from "./AuthButton";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border">
@@ -27,19 +28,23 @@ export function Header() {
             <a href="#contact" className="text-foreground hover:text-primary transition-colors font-medium">
               Contact
             </a>
+            <AuthButton />
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
             <ClaimKitDialog>
               <Button variant="hero" size="default">Claim Your Kit</Button>
             </ClaimKitDialog>
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden neumorphic p-2 rounded-lg" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <AuthButton />
+            <button className="neumorphic p-2 rounded-lg" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
